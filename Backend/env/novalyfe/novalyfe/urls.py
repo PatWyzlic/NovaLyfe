@@ -5,6 +5,5 @@ from core.views import *
   
 urlpatterns = [
     re_path('admin/', admin.site.urls),
-    re_path("accounts/", include("django.contrib.auth.urls")),
-    re_path('wel/', ReactView.as_view(), name="something"),
+    re_path('api/', include("core.urls"))
 ]
