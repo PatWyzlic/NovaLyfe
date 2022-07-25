@@ -12,7 +12,7 @@ class App extends React.Component {
         let data;
   
         axios
-            .get("http://localhost:8000/wel/")
+            .get("http://localhost:8000/api/")
             .then((res) => {
                 data = res.data;
                 this.setState({
@@ -51,7 +51,7 @@ class App extends React.Component {
         e.preventDefault();
   
         axios
-            .post("http://localhost:8000/wel/", {
+            .post("http://localhost:8000/api/", {
                 name: this.state.user,
                 detail: this.state.quote,
             })
