@@ -13,8 +13,6 @@ class ReactSerializer(serializers.ModelSerializer):
         model = React
         fields = ['name', 'detail']
 
-
-
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
@@ -26,7 +24,6 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         # ...
 
         return token
-
 
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(
