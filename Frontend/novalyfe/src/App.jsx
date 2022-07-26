@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import { Routes, Route, Navigate } from "react-router-dom";
 import HomePage from './views/views_HomePage'
@@ -10,8 +10,7 @@ import AuthContext, { AuthProvider } from "./context/AuthContext";
 import ProtectedPage from "./utils/utils_ProtectedPage";
 import RegisterPage from "./views/views_RegisterPage";
 
-class App extends React.Component {
-  render() {
+function App() {
     return (
       <AuthProvider>
         <NavBar />
@@ -23,6 +22,5 @@ class App extends React.Component {
         </Routes>
       </AuthProvider>
     );
-  }
 }
 export default App;
