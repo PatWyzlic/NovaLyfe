@@ -19,7 +19,7 @@ class MyTokenObtainPairView(TokenObtainPairView):
 
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
-    permission_classes = (AllowAny,)
+    permission_classes = [AllowAny]
     serializer_class = RegisterSerializer
 
 
@@ -35,8 +35,8 @@ def getRoutes(request):
 
 
 @api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])
-def testEndPoint(request):
+@permission_classes((IsAuthenticated,))
+def EndPoint(request):
     if request.method == 'GET':
         data = f"Congratulation {request.user}, your API just responded to GET request"
         return Response({'response': data}, status=status.HTTP_200_OK)
@@ -48,3 +48,6 @@ def testEndPoint(request):
 
 def HomePage(request):
     return render(request, 'HomePage')
+
+def RegisterPage(request):
+    return render(request, 'RegisterPage')

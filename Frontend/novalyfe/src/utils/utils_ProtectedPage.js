@@ -9,7 +9,7 @@ function ProtectedPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get("/protected/");
+        const response = await api.get("/protected");
         setRes(response.data.response);
       } catch {
         setRes("Something went wrong");
