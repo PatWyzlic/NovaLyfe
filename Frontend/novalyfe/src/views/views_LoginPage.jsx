@@ -1,18 +1,20 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
 function LoginPage() {
+  let navigate = useNavigate();
   const { loginUser } = useContext(AuthContext);
   const handleSubmit = e => {
     e.preventDefault();
     const username = e.target.username.value;
     const password = e.target.password.value;
     username.length > 0 && loginUser(username, password);
+    navigate('/')
   };
 
   return (
     <>
-      <h1>Test</h1>
       <form onSubmit={handleSubmit}>
         <h1>Login </h1>
         <hr />
