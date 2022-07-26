@@ -15,7 +15,7 @@ function RegisterPage() {
   return (
     <section>
       <form onSubmit={handleSubmit}>
-        <h1>Register</h1>
+        <h1>Registration</h1>
         <hr />
         <div>
             <label htmlFor="username">Username</label>
