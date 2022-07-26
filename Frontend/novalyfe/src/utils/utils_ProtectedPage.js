@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useAxios from "../utils/UseAxios";
+import useAxios from "./UseAxios";
 
 
 function ProtectedPage() {
@@ -9,7 +9,7 @@ function ProtectedPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get("/test/");
+        const response = await api.get("/protected/");
         setRes(response.data.response);
       } catch {
         setRes("Something went wrong");
@@ -21,7 +21,7 @@ function ProtectedPage() {
 
   return (
     <div>
-      <h1>Projected Page</h1>
+      <h1>Protected Page</h1>
       <p>{res}</p>
     </div>
   );
