@@ -1,0 +1,15 @@
+asgiref==3.5.2
+autopep8==1.6.0
+Django==4.0.6
+django-cors-headers==3.13.0
+djangorestframework==3.13.1
+djangorestframework-jwt==1.11.0
+djangorestframework-simplejwt==5.2.0
+psycopg2==2.9.3
+pycodestyle==2.8.0
+PyJWT==1.7.1
+python-dotenv==0.20.0
+pytz==2022.1
+sqlparse==0.4.2
+toml==0.10.2
+tzdata==2022.1
