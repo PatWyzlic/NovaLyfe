@@ -1,5 +1,3 @@
-import email
-import profile
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -16,11 +14,9 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     created_date = models.DateField(auto_now_add=True)
     user_type = models.TextChoices('Admin', 'Normal')
-    email = models.EmailField(max_length = 254)
-    
 
     def __str__(self):
-        return f"The name is {self.user} and is {self.user_type}"
+        return f"{self.user}"
 
 class ToDo(models.Model):
     name = models.CharField(max_length=100)
@@ -28,7 +24,6 @@ class ToDo(models.Model):
     created_date = models.DateField(auto_now_add=True)
     start_date = models.DateField()
     due_date = models.DateField()
-    color = models.CharField(max_length=5, choices=COLOR_CHOICES, default='Black')
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
     def __str__(self):

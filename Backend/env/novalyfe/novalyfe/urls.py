@@ -1,10 +1,9 @@
 # novalyfe/urls.py
 
 from django.contrib import admin
-from django.urls import re_path
-from django.urls import re_path, include
+from django.urls import path, include
 
 urlpatterns = [
-    re_path('admin/', admin.site.urls),
-    re_path('api/', include("core.urls")),
+    path('admin/', admin.site.urls),
+    path('api/', include("core.urls")),
 ]
