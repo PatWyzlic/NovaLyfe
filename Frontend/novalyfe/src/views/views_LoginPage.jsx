@@ -14,17 +14,28 @@ function LoginPage() {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <h1>Login </h1>
-        <hr />
-        <label htmlFor="username">Username</label>
-        <input type="text" id="username" placeholder="Enter Username" />
-        <label htmlFor="password">Password</label>
-        <input type="password" id="password" placeholder="Enter Password" />
-        <button type="submit">Login</button>
+    <div className="login">
+      <h1 className="text-center">Nova Lyfe</h1>
+      <form onSubmit={handleSubmit} className="col-lg-6 offset-lg-3">
+        <div class="form-group">
+          <div>
+            <label htmlFor="username"><h2>Username</h2></label>
+          </div>
+          <input type="text" id="username" placeholder="Enter Username" />
+        </div>
+        <div class="form-group">
+          <div>
+            <label htmlFor="password"><h2>Password</h2></label>
+          </div>
+          <input 
+            type="password" 
+            id="password" 
+            placeholder="Enter Password" 
+          />
+        </div>
+        <button type="submit" className="btn btn-secondary">Login</button>
       </form>
-    </>
+    </div>
   );
 };
 

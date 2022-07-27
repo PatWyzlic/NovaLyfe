@@ -8,9 +8,48 @@ body {
   color: white;
 }
 
+.login{
+  background-image: url("spireinsky.jpeg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  height: 91vh;
+}
+
+.signup{
+  background-image: url("castle.jpeg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  height: 91vh;
+}
+
+
 :root {
   font-family: "PressStart2P";
   src: local("PressStart2P"),
     url("./PressStart2P.ttf") format("truetype");
   font-weight: normal;
+}
+
+li a:hover {
+  color: grey;
+}
+
+.nav, .navbar {
+  background-color: black;
+  border: 1px solid white;
+}
+
+form{
+  padding: 10%;
+  margin: 10%;
+  width: 20%;
+  background-color: rgb(218, 218, 218);
+  border: 4px solid black;
+  height: 80vh;
+}
+
+input{
+  width: 60%;
 }
