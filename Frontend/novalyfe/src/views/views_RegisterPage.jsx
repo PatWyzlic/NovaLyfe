@@ -13,12 +13,15 @@ function RegisterPage() {
   };
 
   return (
-    <section>
-      <form onSubmit={handleSubmit}>
+    <div className="signup">
+        <h1 className="text-center">Nova Lyfe</h1>
+        <form onSubmit={handleSubmit} className="col-lg-6 offset-lg-3">
         <h1>Registration</h1>
         <hr />
-        <div>
-            <label htmlFor="username">Username</label>
+        <div class="form-group">
+            <div>
+                <label htmlFor="username">Username</label>
+            </div>
             <input
                 type="text"
                 id="username"
@@ -27,8 +30,10 @@ function RegisterPage() {
                 required
             />
         </div>
-        <div>
-            <label htmlFor="password">Password</label>
+        <div class="form-group">
+            <div>
+                <label htmlFor="password">Password</label>
+            </div>
             <input
                 type="password"
                 id="password"
@@ -37,7 +42,7 @@ function RegisterPage() {
                 required
             />
         </div>
-        <div>
+        <div class="form-group">
             <label htmlFor="confirm-password">Confirm Password</label>
             <input
                 type="password"
@@ -50,7 +55,7 @@ function RegisterPage() {
         </div>
         <button>Register</button>
         </form>
-    </section>
+    </div>
     );
 }
 
