@@ -27,9 +27,27 @@ const Home = () => {
       {user ? (
         <>
           <UserInfo user={user}/>
+          <table className="add-border">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Start</th>
+                  <th scope="col">Due</th>
+                </tr>
+              </thead>
+              <tbody>
           {todos.map((todo, index) => {
-            return <h1 key={todo.id} todo={todo}> {todo.name}{console.log(todo)} </h1>
+            return <tr key={todo.id} todo={todo} >  
+              <td scope="col">{todo.name} </td>
+              <td scope="col">{todo.description} </td>
+              <td scope="col">{todo.start_date} </td>
+              <td scope="col">{todo.due_date} </td>
+              {console.log(todo)} 
+            </tr>
           })}
+            </tbody>
+          </table>
         </>
       ) : (
         <>
