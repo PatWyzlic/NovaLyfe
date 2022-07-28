@@ -29,6 +29,11 @@ class ToDoView(viewsets.ModelViewSet):
     permission_classes = [AllowAny]
     serializer_class = ToDoSerializer
 
+class ProfileView(viewsets.ModelViewSet):
+    queryset = Profile.objects.all()
+    permission_classes = [AllowAny]
+    serializer_class = ProfileSerializer
+
 @api_view(['GET'])
 def getRoutes(request):
     routes = [
@@ -36,7 +41,7 @@ def getRoutes(request):
         '/api/register/',
         '/api/token/refresh/',
         '/api/prediction/',
-        '/core/todo/'
+        '/api/todo'
     ]
     return Response(routes)
 
