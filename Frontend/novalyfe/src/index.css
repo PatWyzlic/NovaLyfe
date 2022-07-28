@@ -41,6 +41,10 @@ li a:hover {
   border: 1px solid white;
 }
 
+.add-border{
+  border: 1px solid white;
+}
+
 form{
   padding: 10%;
   margin: 10%;
@@ -52,4 +56,21 @@ form{
 
 input{
   width: 60%;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing:0 20px;
+}
+
+th,
+td {
+  width: 150px;
+  text-align: center;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+tr{
+  border: 1px solid white;
 }

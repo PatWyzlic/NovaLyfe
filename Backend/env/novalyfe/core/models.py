@@ -7,6 +7,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     created_date = models.DateField(auto_now_add=True)
     user_type = models.TextChoices('Admin', 'Normal')
+    name = models.CharField(max_length=100)
 
     def __str__(self):
         return f"{self.user}"
@@ -18,7 +19,7 @@ class ToDo(models.Model):
     start_date = models.DateField()
     due_date = models.DateField()
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE),
 
     def __str__(self):
         return f'{self.name}'

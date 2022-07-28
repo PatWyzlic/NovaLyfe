@@ -14,10 +14,15 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('username', 'pk', 'status')
 
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ('__all__')
+
 class ToDoSerializer(serializers.ModelSerializer):
     class Meta:
         model = ToDo
-        fields = '__all__'
+        fields = ('__all__')
 
 class AnimalSerializer(serializers.ModelSerializer):
     class Meta:
