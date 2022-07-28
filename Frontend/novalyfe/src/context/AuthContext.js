@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
       : null
   );
   const [loading, setLoading] = useState(true);
-
+  
   const navigate = useNavigate();
 
   const loginUser = async (username, password) => {
