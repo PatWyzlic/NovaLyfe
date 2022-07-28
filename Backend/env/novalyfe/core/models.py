@@ -1,13 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-COLOR_CHOICES = (
-        ('0','Black'), ('1','White'), ('2','Blue'), ('3','Red'),
-        ('4','Green'), ('5','Brown'), ('6','Grey'), ('7','Pink'),
-        ('8','Purple'), ('9','Orange'), ('10','Yellow'),('11','Darkolive'),
-        ('12','Lightpink'),('13','Lightblue'),
-    )
-
 # Create your models here.
 
 class Profile(models.Model):
@@ -25,9 +18,17 @@ class ToDo(models.Model):
     start_date = models.DateField()
     due_date = models.DateField()
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.name}'
+
+COLOR_CHOICES = (
+        ('0','Black'), ('1','White'), ('2','Blue'), ('3','Red'),
+        ('4','Green'), ('5','Brown'), ('6','Grey'), ('7','Pink'),
+        ('8','Purple'), ('9','Orange'), ('10','Yellow'),('11','Darkolive'),
+        ('12','Lightpink'),('13','Lightblue'),
+    )
 
 class RoutineItem(models.Model):
     name = models.CharField(max_length=100)

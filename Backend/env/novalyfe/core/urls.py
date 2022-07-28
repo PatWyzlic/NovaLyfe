@@ -16,4 +16,5 @@ urlpatterns = [
     path('register/', views.EndPoint, name='register'),
     path('', views.getRoutes),
     path('homepage/', views.HomePage, name='homepage'),
+    path('todo/', views.ToDoView.as_view({'get': 'list'}), name='todoview'),
 ]

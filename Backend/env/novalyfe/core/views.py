@@ -5,7 +5,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from django.http import JsonResponse
-from rest_framework import status
+from rest_framework import status, viewsets
 from core.serializer import MyTokenObtainPairSerializer, RegisterSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import generics
@@ -13,6 +13,7 @@ from django.contrib.auth.models import User
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from . serializer import *
 from rest_framework.views import APIView
+from . models import *
 # Create your views here.
 
 class MyTokenObtainPairView(TokenObtainPairView):
@@ -23,6 +24,11 @@ class RegisterView(generics.CreateAPIView):
     permission_classes = [AllowAny]
     serializer_class = RegisterSerializer
 
+class ToDoView(viewsets.ModelViewSet):
+    queryset = ToDo.objects.all()
+    permission_classes = [AllowAny]
+    serializer_class = ToDoSerializer
+
 @api_view(['GET'])
 def getRoutes(request):
     routes = [
@@ -30,16 +36,9 @@ def getRoutes(request):
         '/api/register/',
         '/api/token/refresh/',
         '/api/prediction/',
+        '/core/todo/'
     ]
     return Response(routes)
-
-def AnimalView(request):
-    serializer_class = AnimalSerializer
-    
-    def get(self, request):
-        data = [ {"name": data.name, "description": data.description, "color": data.color, "rec_format": data.rec_format, "breed": data.breed} 
-        for data in Animal.objects.all()]
-        return Response(data)
 
 @api_view(['GET', 'POST'])
 @permission_classes((IsAuthenticated,))
