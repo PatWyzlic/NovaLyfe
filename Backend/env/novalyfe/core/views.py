@@ -41,7 +41,6 @@ def getRoutes(request):
         '/api/register/',
         '/api/token/refresh/',
         '/api/prediction/',
-        '/api/todo'
     ]
     return Response(routes)
 
