@@ -18,8 +18,8 @@ class ToDo(models.Model):
     created_date = models.DateField(auto_now_add=True)
     start_date = models.DateField()
     due_date = models.DateField()
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE),
+    profile = models.ManyToManyField(Profile, on_delete=models.CASCADE),
 
     def __str__(self):
         return f'{self.name}'
@@ -38,8 +38,9 @@ class RoutineItem(models.Model):
     start_date = models.DateField()
     due_date = models.DateField()
     repetition_amount = models.IntegerField()
-    color = models.CharField(max_length=5, choices=COLOR_CHOICES, default='Black')
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    color = models.CharField(max_length=5, choices=COLOR_CHOICES, default='Black'),
+    user = models.ForeignKey(User, on_delete=models.CASCADE),
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE),
 
     def __str__(self):
         return f'{self.name}'
@@ -49,7 +50,8 @@ class Animal(models.Model):
     description = models.TextField()
     color = models.CharField(max_length=25)
     breed = models.CharField(max_length=40)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE),
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE),
 
     def __str__(self):
         return f'{self.name}'
