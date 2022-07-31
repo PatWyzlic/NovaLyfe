@@ -1,6 +1,7 @@
 # api/views.py
 
-from urllib import request
+from urllib import request, response
+from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.shortcuts import render
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
@@ -11,9 +12,11 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import generics
 from django.contrib.auth.models import User
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from . serializer import *
+from .serializer import *
 from rest_framework.views import APIView
 from . models import *
+from .serializer import ToDoSerializer
+from core.models import ToDo
 # Create your views here.
 
 class MyTokenObtainPairView(TokenObtainPairView):
@@ -24,17 +27,30 @@ class RegisterView(generics.CreateAPIView):
     permission_classes = [AllowAny]
     serializer_class = RegisterSerializer
 
-class ToDoView(viewsets.ModelViewSet):
-    queryset = ToDo.objects.all()
-    permission_classes = [AllowAny]
+@permission_classes((IsAuthenticated,))
+@api_view(['GET'])
+class ToDoView(APIView):
     serializer_class = ToDoSerializer
-
-class ProfileView(viewsets.ModelViewSet):
-    queryset = Profile.objects.all()
     permission_classes = [AllowAny]
+    queryset = ToDo.objects.all()
+
+    def getToDos(self, request):
+        user = request.user
+        todos = user.todo_set.all()
+        serializer = ToDoSerializer(todos, many=True)
+    
+        return Response(serializer.data)
+
+
+    
+class ProfileView(APIView):
     serializer_class = ProfileSerializer
+    permission_classes = [AllowAny]
+    queryset = Profile.objects.all()
+
 
 @api_view(['GET'])
+@permission_classes((IsAuthenticated,))
 def getRoutes(request):
     routes = [
         '/api/token/',
@@ -43,6 +59,9 @@ def getRoutes(request):
         '/api/prediction/',
     ]
     return Response(routes)
+
+
+
 
 @api_view(['GET', 'POST'])
 @permission_classes((IsAuthenticated,))
@@ -55,6 +74,7 @@ def EndPoint(request):
         data = f'Congratulation your API just responded to POST request with text: {text}'
         return Response({'response': data}, status=status.HTTP_200_OK)
     return Response({}, status.HTTP_400_BAD_REQUEST)
+
 
 def HomePage(request):
     return render(request, 'HomePage')

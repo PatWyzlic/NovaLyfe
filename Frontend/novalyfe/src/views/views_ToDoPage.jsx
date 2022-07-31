@@ -1,22 +1,35 @@
 
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { useEffect } from "react";
+import AuthContext from "../context/AuthContext";
 
 export default function ToDoPage({user}){
     const [todos, setToDos] = useState([])
-  
-    function getData(){
-        const url = 'http://127.0.0.1:8000/api/todo/'
-        axios.get(url)
-        .then(response => 
-            setToDos(response.data));
-    }
-    
+    let {authTokens, logoutUser} = useContext(AuthContext)
+
     useEffect(() => {
-        getData();
+        getToDos()
     }, []);
 
+
+    let getToDos = async() =>{
+        let response = await fetch('http://127.0.0.1:8000/api/todos', {
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json',
+                'Accept': 'application/json',
+                'Authorization':'Bearer ' + String(authTokens.access)
+            }
+        })
+        let data = await response.json()
+
+        if(response.status === 200){
+            setToDos(data)
+        }else if(response.statusText === 'Unauthorized'){
+            logoutUser()
+        }
+        
+    }
 
     return(
         <>
@@ -27,18 +40,26 @@ export default function ToDoPage({user}){
                     <th scope="col">Description</th>
                     <th scope="col">Start</th>
                     <th scope="col">Due</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                     </tr>
                 </thead>
             <tbody>
             {todos.map((todo, index) => {
-            return <tr key={todo.id} todo={todo} >  
-                <td scope="col">{todo.name} </td>
-                <td scope="col">{todo.description} </td>
-                <td scope="col">{todo.start_date} </td>
-                <td scope="col">{todo.due_date} </td>
-                {console.log(todo)}
-            </tr>
-            })}
+                if(todo.profile !== 'hi'){
+                return <tr key={todo.todo_id} todo={todo.todo_id} >  
+                            {console.log(todo)}
+                            <td scope="col">{todo.name} </td>
+                            <td scope="col">{todo.description} </td>
+                            <td scope="col">{todo.start_date} </td>
+                            <td scope="col">{todo.due_date} </td>
+                            {console.log(todo)}
+                            {console.log(user)}
+                        </tr>
+                    }
+                }
+            )
+            }
             </tbody>
             </table>
             <button>Add to do</button>
