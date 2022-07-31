@@ -27,14 +27,12 @@ class RegisterView(generics.CreateAPIView):
     permission_classes = [AllowAny]
     serializer_class = RegisterSerializer
 
-@permission_classes((IsAuthenticated,))
-@api_view(['GET'])
 class ToDoView(APIView):
     serializer_class = ToDoSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     queryset = ToDo.objects.all()
 
-    def getToDos(self, request):
+    def get(self, request):
         user = request.user
         todos = user.todo_set.all()
         serializer = ToDoSerializer(todos, many=True)
