@@ -16,4 +16,7 @@ urlpatterns = [
     path('register/', views.EndPoint, name='register'),
     path('', views.getRoutes),
     path('todos/', views.ToDoView.as_view(), name="todos"),
+    path('todos/create', views.CreateToDo, name="create-todo"),
+    path('edittodo/<str:pk>/', views.ToDoView.as_view(), name="todos"),
+    path('routines/', views.RoutineView.as_view(), name="routines"),
 ]
