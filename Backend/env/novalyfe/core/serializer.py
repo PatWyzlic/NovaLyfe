@@ -23,6 +23,11 @@ class ToDoSerializer(serializers.ModelSerializer):
         model = ToDo
         fields = ('__all__')
 
+class RoutineItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RoutineItem
+        fields = ('__all__')
+
 class AnimalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Animal
