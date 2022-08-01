@@ -11,7 +11,6 @@ export default function ToDoPage({user}){
         getToDos()
     }, []);
 
-
     let getToDos = async() =>{
         let response = await fetch('http://127.0.0.1:8000/api/todos', {
             method:'GET',
@@ -33,6 +32,7 @@ export default function ToDoPage({user}){
 
     return(
         <>
+            {console.log(todos)}
             <table className="add-border">
                 <thead>
                     <tr>
@@ -40,29 +40,26 @@ export default function ToDoPage({user}){
                     <th scope="col">Description</th>
                     <th scope="col">Start</th>
                     <th scope="col">Due</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
                     </tr>
                 </thead>
             <tbody>
             {todos.map((todo, index) => {
-                if(todo.profile !== 'hi'){
-                return <tr key={todo.todo_id} todo={todo.todo_id} >  
+                return <tr key={todo.id} todo={todo.id} >  
                             {console.log(todo)}
                             <td scope="col">{todo.name} </td>
                             <td scope="col">{todo.description} </td>
                             <td scope="col">{todo.start_date} </td>
                             <td scope="col">{todo.due_date} </td>
+                            <button><a href={`todos/${todo.id}`}>View</a></button>
                             {console.log(todo)}
                             {console.log(user)}
                         </tr>
                     }
-                }
             )
             }
             </tbody>
             </table>
-            <button>Add to do</button>
+            <button><a href="/todos/create/">Add To Do</a></button>
         </>
     )
 }
