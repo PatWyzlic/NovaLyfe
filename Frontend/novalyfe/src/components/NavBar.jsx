@@ -12,6 +12,30 @@ export default function NavBar(){
                 {user ? (
                     <ul className="navbar-nav">
                         <li className="nav-link">
+                            <Link to="/"> 
+                                <h1 className="text-secondary">Home
+                                </h1>
+                            </Link>
+                        </li>
+                        <li className="nav-link">
+                            <Link to="/weatherpage"> 
+                                <h1 className="text-secondary">Weather
+                                </h1>
+                            </Link>
+                        </li>
+                        <li className="nav-link">
+                            <Link to="/todos"> 
+                                <h1 className="text-secondary">ToDos
+                                </h1>
+                            </Link>
+                        </li>
+                        <li className="nav-link">
+                            <Link to="/routines"> 
+                                <h1 className="text-secondary">Routines
+                                </h1>
+                            </Link>
+                        </li>
+                        <li className="nav-link">
                             <button onClick={logoutUser} className="navbar-item active">Logout</button>
                         </li>
                     </ul>       
