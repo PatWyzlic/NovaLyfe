@@ -11,7 +11,6 @@ USER_TYPE_CHOICES = (
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     created_date = models.DateField(auto_now_add=True)
-    user_type = models.TextChoices('Admin', 'Normal')
     name = models.CharField(max_length=100)
     user_type_choices = models.CharField(max_length=20, choices=USER_TYPE_CHOICES, default='Normal')
     profile_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -20,14 +19,12 @@ class Profile(models.Model):
         return f"{self.user}"
 
 class ToDo(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
+    name = models.CharField(max_length=100, null=False)
+    description = models.TextField(null=True)
     created_date = models.DateField(auto_now_add=True)
-    start_date = models.DateField()
-    due_date = models.DateField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    todo_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    start_date = models.DateField(null=False)
+    due_date = models.DateField(null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
 
     def __str__(self):
         return f'{self.name}'
@@ -40,14 +37,15 @@ COLOR_CHOICES = (
     )
 
 class RoutineItem(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
+    name = models.CharField(max_length=100, null=False)
+    description = models.TextField(null=True)
     created_date = models.DateField(auto_now_add=True)
-    start_date = models.DateField()
-    due_date = models.DateField()
-    repetition_amount = models.IntegerField()
+    start_date = models.DateField(null=True)
+    due_date = models.DateField(null=False)
+    repetition_amount = models.IntegerField(null=True)
     color = models.CharField(max_length=5, choices=COLOR_CHOICES, default='Black')
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     routine_item_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     def __str__(self):
