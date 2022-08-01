@@ -30,7 +30,6 @@ class RegisterView(generics.CreateAPIView):
 class ToDoView(APIView):
     serializer_class = ToDoSerializer
     permission_classes = [IsAuthenticated]
-    queryset = ToDo.objects.all()
 
     def get(self, request):
         user = request.user
@@ -39,8 +38,43 @@ class ToDoView(APIView):
     
         return Response(serializer.data)
 
+class getToDo(APIView):
+    serializer_class = ToDoSerializer
+    permission_classes = [IsAuthenticated]
 
+    def get(self, request, id, *callback_args, **callback_kwargs):
+        data = request.data
+        user = request.user
+        print(user)
+        print('prints:')
+        print(data)
+
+        todos = ToDo.objects.get(id=id, user=user)
+        print(todos)
+        if not todos:
+            return Response(
+                {"res": "Object with todo id does not exists"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        serializer_class = ToDoSerializer(todos)
+        return Response(serializer_class.data, status=status.HTTP_200_OK)
+
+class createToDo(APIView):
+    serializer_class = ToDoSerializer
+    permission_classes = [IsAuthenticated]
+
+class RoutineView(APIView):
+    serializer_class = ToDoSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        routines = user.routineitem_set.all()
+        serializer = RoutineItemSerializer(routines, many=True)
     
+        return Response(serializer.data)
+
+
 class ProfileView(APIView):
     serializer_class = ProfileSerializer
     permission_classes = [AllowAny]
@@ -55,10 +89,9 @@ def getRoutes(request):
         '/api/register/',
         '/api/token/refresh/',
         '/api/prediction/',
+        '/api/weatherpage',
     ]
     return Response(routes)
-
-
 
 
 @api_view(['GET', 'POST'])
@@ -79,3 +112,7 @@ def HomePage(request):
 
 def RegisterPage(request):
     return render(request, 'RegisterPage')
+
+def WeatherPage(request):
+    return render(request, 'WeatherPage')
+
