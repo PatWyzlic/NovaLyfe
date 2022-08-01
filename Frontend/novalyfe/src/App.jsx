@@ -14,7 +14,7 @@ import ToDoPage from "./views/views_ToDoPage";
 import ToDoSinglePage from "./views/ToDoSinglePage";
 import WeatherPage from "./views/views_WeatherPage"
 import RoutinePage from "./views/views_RoutinePage"
-const API_KEY =`${process.env.REACT_APP_API_KEY}`
+
 
 function App() {
     return (
@@ -25,7 +25,7 @@ function App() {
           <Route path="/todos/:id/" element={<ToDoSinglePage/>} />
           <Route path="/todos/create/" element={<ToDoCreate/>}/>
           <Route path="/routines/" element={<RoutinePage/>}/>
-          <Route path="/weatherpage/" element={<WeatherPage API_KEY={API_KEY}/>}/>
+          <Route path="/weatherpage/" element={<WeatherPage/>}/>
           <Route path="/" element={<HomePage/>}/>
           <Route path="/register/" element={<RegisterPage/>}/>
           <Route path="/login/" element={<LoginPage/>}/>
