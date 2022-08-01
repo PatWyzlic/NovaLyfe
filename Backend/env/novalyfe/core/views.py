@@ -63,6 +63,19 @@ class createToDo(APIView):
     serializer_class = ToDoSerializer
     permission_classes = [IsAuthenticated]
 
+    def post(self, request):
+        data = request.data
+        name = data['name']
+        description = data['description']
+        start_date = data['start_date']
+        due_date = data['due_date']
+        user = request.user
+        
+        todo = ToDo.objects.create(name=name, description=description, user=user)
+        todo.save()
+
+        return Response({'success': 'Added to do successfully'})
+
 class RoutineView(APIView):
     serializer_class = ToDoSerializer
     permission_classes = [IsAuthenticated]
