@@ -1,6 +1,6 @@
 # NovaLyfe
 
-<h4>NovaLyfe is a dashboard for your life. You are able to add to dos as well as seeing the current weather in your location.</h4>
+<h4>NovaLyfe is a dashboard for users lives. Users are able to add to dos with a name, description, start date, and due date. Users also automaticall get the weather near their general location, and can type in locations to get a specific result.</h4>
 
 
 <h4>Home Page</h4>
@@ -15,6 +15,10 @@
 
 ![Screen Shot 2022-08-02 at 1 54 46 AM](https://user-images.githubusercontent.com/96600690/182302052-150ce8db-b9c2-47ac-88b4-8b116d03514e.png)
 
+<h4>ERD</h4>
+
+![Screen Shot 2022-08-02 at 1 47 36 AM](https://user-images.githubusercontent.com/96600690/182432081-0f1852e8-1b14-4b28-bd40-6f9f4bc0fc19.png)
+
 <h4>Technologies Used</h4>
 <ul>
 <h3>Frontend:</h3>
@@ -22,16 +26,18 @@
 <li>Bootstrap</li>
 
 <h3>Backend:</h3>
+
 <li>Django</li>
+<li>Postgresql</li>
 <li>SimpleJWT</li>
 
 </ul>
 
-<h4>Icebox</h4>
+<h4>Future Enhancements </h4>
 <ul>
 <li>Tags to categorize items</li>
 <li>Filters for sorting by attributes such as dates</li>
-<li>Profile picture</li>
+<li>Profile picture/ Pixel characters</li>
 <li>Progress bar for completion of daily todos</li>
 </ul>
 
