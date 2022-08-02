@@ -52,6 +52,8 @@
 <li>Filters for sorting by attributes such as dates</li>
 <li>Profile picture/ Pixel characters</li>
 <li>Progress bar for completion of daily todos</li>
+<li>Routines</li>
+<li>Keep track of animals</li>
 </ul>
 
 
