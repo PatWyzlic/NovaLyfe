@@ -45,10 +45,6 @@ class getToDo(APIView):
     def get(self, request, id, *callback_args, **callback_kwargs):
         data = request.data
         user = request.user
-        print(user)
-        print('prints:')
-        print(data)
-
         todos = ToDo.objects.get(id=id, user=user)
         print(todos)
         if not todos:
@@ -59,6 +55,41 @@ class getToDo(APIView):
         serializer_class = ToDoSerializer(todos)
         return Response(serializer_class.data, status=status.HTTP_200_OK)
 
+class editToDo(APIView):
+    serializer_class = ToDoSerializer
+    permission_classes = [IsAuthenticated]
+
+    def put(self, request, id, *callback_args, **callback_kwargs):
+        data = request.data
+        name = data['name']
+        description = data['description']
+        startdate = data['startdate']
+        duedate = data['duedate']
+        user = request.user
+        
+        todo = ToDo.objects.filter(id=id).update(name=name, description=description, start_date=startdate, due_date=duedate, user=user)
+
+        todo.save()
+        return Response(status=status.HTTP_200_OK)
+
+class deleteToDo(APIView):
+    serializer_class = ToDoSerializer
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, id, *args, **kwargs):
+        data = request.data
+        user = request.user
+        todo = ToDo.objects.get(id=id)
+        todo.delete()
+        if not todo:
+            return Response(
+                {"res": "Object with id does not exists"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        serializer_class = ToDoSerializer(ToDo)
+        return Response(serializer_class.data, status=status.HTTP_200_OK)
+
 class createToDo(APIView):
     serializer_class = ToDoSerializer
     permission_classes = [IsAuthenticated]
@@ -67,14 +98,14 @@ class createToDo(APIView):
         data = request.data
         name = data['name']
         description = data['description']
-        start_date = data['start_date']
-        due_date = data['due_date']
+        startdate = data['startdate']
+        duedate = data['duedate']
         user = request.user
         
-        todo = ToDo.objects.create(name=name, description=description, user=user)
+        todo = ToDo.objects.create(name=name, description=description, start_date=startdate, due_date=duedate, user=user)
         todo.save()
 
-        return Response({'success': 'Added to do successfully'})
+        return Response(status=status.HTTP_200_OK)
 
 class RoutineView(APIView):
     serializer_class = ToDoSerializer
@@ -94,7 +125,7 @@ class ProfileView(APIView):
     queryset = Profile.objects.all()
 
 
-@api_view(['GET'])
+@api_view(['GET', 'POST', 'PUT', 'DELETE'])
 @permission_classes((IsAuthenticated,))
 def getRoutes(request):
     routes = [
@@ -103,11 +134,15 @@ def getRoutes(request):
         '/api/token/refresh/',
         '/api/prediction/',
         '/api/weatherpage',
+        '/api/todos/create',
+        '/api/edit/:id/',
+        '/api/delete/:id/',
     ]
     return Response(routes)
 
 
-@api_view(['GET', 'POST'])
+
+@api_view(['GET', 'POST', 'PUT', 'DELETE'])
 @permission_classes((IsAuthenticated,))
 def EndPoint(request):
     if request.method == 'GET':
