@@ -15,7 +15,7 @@ const Home = () => {
   const { user } = useContext(AuthContext);
 
   return (
-    <div>
+    <div className="main-baground">
       {user ? (
         <>
           <UserInfo user={user}/>
