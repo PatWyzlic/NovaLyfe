@@ -17,8 +17,14 @@
 
 <h4>Technologies Used</h4>
 <ul>
-<li>Frontend: React</li>
-<li>Backend: Django</li>
+<h3>Frontend:</h3>
+<li>React</li>
+<li>Bootstrap</li>
+
+<h3>Backend:</h3>
+<li>Django</li>
+<li>SimpleJWT</li>
+
 </ul>
 
 <h4>Icebox</h4>
