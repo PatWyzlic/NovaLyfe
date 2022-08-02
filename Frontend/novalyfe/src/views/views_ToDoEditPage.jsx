@@ -39,7 +39,6 @@ export default function ToDoEditPage({ user, duedate, startdate, description, na
     return (
     <>
         <div className="create-to-do">
-            <h1 className="text-center">Edit To Do</h1>
             <form onSubmit={handleSubmit} className="col-lg-6 offset-lg-3"
             autoComplete="off">
             <div class="form-group">
