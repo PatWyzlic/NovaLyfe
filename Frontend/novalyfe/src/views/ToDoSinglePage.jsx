@@ -3,12 +3,14 @@ import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import {useParams } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import ToDoEditPage from "./views_ToDoEditPage"
 
 export default function ToDoSinglePage({user}){
     let {authTokens, logoutUser} = useContext(AuthContext)
     const { id } = useParams();
     const [todo, setToDo] = useState('')
     console.log(id)
+    console.log(todo)
 
     useEffect(() => {
         getToDo()
@@ -34,7 +36,13 @@ export default function ToDoSinglePage({user}){
 
     return (
         <div className="todo" >
-            {todo.name}
+            <ul>  
+                <li>Name: {todo.name}</li>
+                <li>Description: {todo.description}</li>
+                <li>Due Date: {todo.due_date}</li>
+                <li>Start Date: {todo.start_date}</li>
+            </ul>
+            <ToDoEditPage name={todo.name} description={todo.description} startdate={todo.start_date} duedate={todo.due_date} id={id}/>
         </div>
     )
 }
