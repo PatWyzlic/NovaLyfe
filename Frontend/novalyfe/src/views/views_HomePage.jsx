@@ -20,7 +20,6 @@ const Home = () => {
         <>
           <UserInfo user={user}/>
           <ToDoPage user={user}/>
-          <RoutinePage user={user}/>
           <WeatherPage />
         </>
       ) : (
