@@ -13,7 +13,7 @@
 
 <h4>Registration Page</h4>
 
-![Screen Shot 2022-08-02 at 1 54 46 AM](https://user-images.githubusercontent.com/96600690/182302052-150ce8db-b9c2-47ac-88b4-8b116d03514e.png)
+![Screen Shot 2022-08-02 at 1 20 42 PM](https://user-images.githubusercontent.com/96600690/182435778-636d9526-2c46-4c6f-bc98-de8264793408.png)
 
 <h4>ERD</h4>
 
