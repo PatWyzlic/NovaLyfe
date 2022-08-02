@@ -44,6 +44,7 @@ export default function WeatherPage({user}){
             <ul>
                 <li>{weather.resolvedAddress}</li>
                 <li>Max Temperature: {weather.days[0].tempmax}</li>
+                <li>Min Temperature: {weather.days[0].tempmin}</li>
             </ul>
             <div>
             {weather.days.map((day, index) => {
@@ -60,6 +61,9 @@ export default function WeatherPage({user}){
                                     <li>Time: {hour.datetime}</li>
                                         <ul>
                                             <li>Temperature: {hour.temp}</li>
+                                            <li>Feels Like: {hour.feelslike}</li>
+                                            <li>Conditions: {hour.conditions}</li>
+                                        
                                         </ul>
                                 </ul>
                             </div>
