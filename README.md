@@ -1,7 +1,19 @@
 # NovaLyfe
 
-<h4>NovaLyfe is a dashboard for users lives. Users are able to add to dos with a name, description, start date, and due date. Users also automaticall get the weather near their general location, and can type in locations to get a specific result.</h4>
+<h4>NovaLyfe is a dashboard for users lives. Users are able to add to dos with a name, description, start date, and due date. Users also automaticall get the weather near their general location, and can type in locations to get a specific weather result.</h4>
 
+# User Story
+<ul>
+  <li>As a user, I want to signup to create an account </li>
+  <li>As a user, I want to login to gain access to my data </li>
+  <li>As a user, I am only given access to my own data </li>
+  <li>As a user, I want to edit a todo beign able to change name, description, start date, and due date </li>
+  <li>As a user, I want to delete my todos </li>
+  <li>As a user, I want to automatically get the weather in my general area </li>
+  <li>As a user, I want to have the ability to search the weather in different areas </li>
+</ul>
+
+# Main Pages
 
 <h4>Home Page</h4>
 
@@ -29,6 +41,7 @@
 
 <li>Django</li>
 <li>Postgresql</li>
+<li>SQLite</li>
 <li>SimpleJWT</li>
 
 </ul>
