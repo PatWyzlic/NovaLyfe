@@ -18,20 +18,14 @@ export default function NavBar(){
                             </Link>
                         </li>
                         <li className="nav-link">
-                            <Link to="/weatherpage"> 
-                                <h1 className="text-secondary">Weather
-                                </h1>
-                            </Link>
-                        </li>
-                        <li className="nav-link">
                             <Link to="/todos"> 
                                 <h1 className="text-secondary">ToDos
                                 </h1>
                             </Link>
                         </li>
                         <li className="nav-link">
-                            <Link to="/routines"> 
-                                <h1 className="text-secondary">Routines
+                            <Link to="/weatherpage"> 
+                                <h1 className="text-secondary">Weather
                                 </h1>
                             </Link>
                         </li>
