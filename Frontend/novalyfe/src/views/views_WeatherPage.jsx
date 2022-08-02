@@ -1,29 +1,46 @@
 
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import AuthContext from "../context/AuthContext";
 
-export default function WeatherPage({user, API_KEY}){
-    const [weather, setWeather] = useState(null)
-    let {authTokens, logoutUser} = useContext(AuthContext)
+export default function WeatherPage({user}){
+    let latitude;
+    let longitude;
 
-    let baseURL = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/east%20stroudsbug?unitGroup=metric&key=HJW9DD5XBT4HPJNCGGW9K8B99&contentType=json`
+    navigator.geolocation.getCurrentPosition((position) => {
+        latitude = (position.coords.latitude);
+        longitude = (position.coords.longitude);
+    });
+
     
+    const [weather, setWeather] = useState('')
+    const [location, setLocation] = useState(latitude, longitude)
+
+    let baseURL = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&key=HJW9DD5XBT4HPJNCGGW9K8B99&contentType=json`
+
+
     useEffect(() => {
         axios.get(baseURL).then((response) => {
             setWeather(response.data);
         });
-      }, []);
+    }, [baseURL]);
 
-      if (!weather) return null;
-    
-      navigator.geolocation.getCurrentPosition((position) => {
-        console.log( (position.coords.latitude));
-        console.log( (position.coords.longitude));
-      });
+    if (!weather) return null;
+
+    function getWeather(){
+        baseURL = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/east%20stroudsbug?unitGroup=metric&key=HJW9DD5XBT4HPJNCGGW9K8B99&contentType=json`
+
+        axios.get(baseURL).then((response) => {
+            setWeather(response.data);
+        });
+    }
 
     return(
         <>  
+            <div>
+                <h6>Search for weather</h6>
+                <input type="text" onChange={e => setLocation(e.target.value)}></input>
+                <button onSubmit={getWeather}>Search</button>
+            </div>
             <ul>
                 <li>{weather.resolvedAddress}</li>
                 <li>Max Temperature: {weather.days[0].tempmax}</li>
