@@ -17,6 +17,7 @@ function LoginPage() {
     <div className="login">
       <h1 className="text-center">Nova Lyfe</h1>
       <form onSubmit={handleSubmit} className="col-lg-6 offset-lg-3">
+        <h1>Login</h1>
         <div class="form-group">
           <div>
             <label htmlFor="username"><h2>Username</h2></label>
