@@ -32,6 +32,7 @@ export default function ToDoPage({user}){
 
     return(
         <>
+            <button><a href="/todos/create/">Add To Do</a></button>
             {console.log(todos)}
             <table className="add-border">
                 <thead>
@@ -51,6 +52,7 @@ export default function ToDoPage({user}){
                             <td scope="col">{todo.start_date} </td>
                             <td scope="col">{todo.due_date} </td>
                             <button><a href={`todos/${todo.id}`}>View</a></button>
+                            <button><a href={`todos/delete/${todo.id}`}>Delete</a></button>
                             {console.log(todo)}
                             {console.log(user)}
                         </tr>
@@ -59,7 +61,6 @@ export default function ToDoPage({user}){
             }
             </tbody>
             </table>
-            <button><a href="/todos/create/">Add To Do</a></button>
         </>
     )
 }
