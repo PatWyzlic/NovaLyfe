@@ -6,6 +6,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: black;
   color: white;
+  font-size: larger;
 }
 
 .login{
@@ -14,6 +15,13 @@ body {
   background-attachment: fixed;
   background-position: center;
   height: 91vh;
+}
+
+.main-baground{
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-position: center;
+  height: 1000px;
 }
 
 .signup{
