@@ -26,9 +26,9 @@ urlpatterns = [
 
     path('todos/<str:id>/', views.getToDo.as_view(), name="todo_view"),
 
-    path('todos/<str:id>/edit/', views.editToDo.as_view(), name="todo_edit"),
+    path('todos/edit/<str:id>/', views.editToDo.as_view(), name="todo_edit"),
 
-    path('todos/<str:id>/delete/', views.deleteToDo.as_view(), name="todo_delete"),
+    path('todos/delete/<str:id>/', views.deleteToDo.as_view(), name="todo_delete"),
 
     path('routines/', views.RoutineView.as_view(), name="routines"),
 
