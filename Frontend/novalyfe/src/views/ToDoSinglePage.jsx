@@ -35,7 +35,7 @@ export default function ToDoSinglePage({user}){
     }
 
     return (
-        <div className="todo" >
+        <div className="todo text-center" >
             <ul>  
                 <li>Name: {todo.name}</li>
                 <li>Description: {todo.description}</li>
