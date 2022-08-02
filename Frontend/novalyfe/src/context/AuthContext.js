@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import {useParams } from "react-router-dom";
 
 const AuthContext = createContext();
 
@@ -71,6 +72,33 @@ export const AuthProvider = ({ children }) => {
     navigate("/");
   };
 
+  const [todo, setToDo] = useState(true);
+
+  const createToDo = async(name, description, startdate, duedate) => {
+    const response = await fetch('http://127.0.0.1:8000/api/todos/create/', {
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json',
+            'Accept': 'application/json',
+            'Authorization':'Bearer ' + String(authTokens.access)
+        },
+        body: JSON.stringify({
+            name,
+            description,
+            startdate,
+            duedate
+        })
+    });
+      if (response.status === 201) {
+          navigate("/todos");
+      } else {
+          navigate("/todos");
+      }
+    }
+
+    const { id } = useParams();
+
+
   const contextData = {
     user,
     setUser,
@@ -78,7 +106,10 @@ export const AuthProvider = ({ children }) => {
     setAuthTokens,
     registerUser,
     loginUser,
-    logoutUser
+    logoutUser,
+    createToDo,
+    todo,
+    setToDo
   };
 
   useEffect(() => {
