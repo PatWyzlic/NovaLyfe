@@ -1,48 +1,19 @@
-import { useState, useEffect, useContext } from "react";
-import axios from "axios";
+import { useState, useContext, useCallback } from "react";
 import AuthContext from "../context/AuthContext";
 
-export default function ToDoCreate({ user }) {
-    const [todo, setToDo] = useState({
-        name: '',
-        description: '',
-        start_date: '',
-        due_date: '',
-    });
 
-    const handleChange = (evt) => {
-        setToDo({ ...todo, [evt.target.name]: evt.target.value});
+export default function ToDoCreate({ user}) {
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [startdate, setStartDate] = useState("");
+    const [duedate, setDueDate] = useState("");
+    
+    const { createToDo } = useContext(AuthContext);
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+        createToDo(name, description, startdate, duedate)
     };
-
-    let { authTokens, logoutUser } = useContext(AuthContext);
-
-    const handleSubmit = async (evt) => {
-        let createToDo = async(name, description, start_date, end_date) =>{
-            let response = await fetch('http://127.0.0.1:8000/api/todos/create', {
-                method:'POST',
-                headers:{
-                    'Content-Type':'application/json',
-                    'Accept': 'application/json',
-                    'Authorization':'Bearer ' + String(authTokens.access)
-                },
-                body: JSON.stringify({
-                    name,
-                    description,
-                    start_date,
-                    end_date
-                })
-            })
-                let data = await response.json()
-        
-                if(response.status === 200){
-                    setToDo(data)
-                }else if(response.statusText === 'Unauthorized'){
-                    logoutUser()
-                }
-            }
-        
-
-    }
 
     return (
     <>
@@ -60,8 +31,8 @@ export default function ToDoCreate({ user }) {
                 type="text" 
                 id="name" 
                 placeholder="Enter Name" 
-                value={todo.name}
-                onChange={handleChange}/>
+                onChange={e => setName(e.target.value)}
+                required/>
             </div>
             <div class="form-group">
                 <div>
@@ -72,37 +43,38 @@ export default function ToDoCreate({ user }) {
                 <input type="text" 
                 id="description" 
                 placeholder="Enter Description" 
-                value={todo.description}
-                onChange={handleChange}/>
+                onChange={e => setDescription(e.target.value)}
+                required/>
             </div>
             <div class="form-group">
                 <div>
-                <label htmlFor="start_date">
+                <label htmlFor="startdate">
                     <h2>Start Date</h2>
                 </label>
                 </div>
                 <input 
                 type="date" 
-                id="start_date"
-                value={todo.name}
-                onChange={handleChange}/>
+                id="startdate"
+                onChange={e => setStartDate(e.target.value)}
+                required
+                />
             </div>
             <div class="form-group">
                 <div>
-                <label htmlFor="end_date">
-                    <h2>End Date</h2>
+                <label htmlFor="duedate">
+                    <h2>Due Date</h2>
                 </label>
                 </div>
                 <input 
                 type="date" 
-                id="end_date"
-                value={todo.end_date}
-                onChange={handleChange}
+                id="duedate"
+                onChange={e => setDueDate(e.target.value)}
+                required
                 />
             </div>
-            <button type="submit" className="btn btn-secondary">
-                Create
-            </button>
+                <button type="submit" className="btn btn-secondary">
+                    Create
+                </button>
             </form>
         </div>
         </>
