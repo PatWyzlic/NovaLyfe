@@ -68,8 +68,7 @@ class editToDo(APIView):
         user = request.user
         
         todo = ToDo.objects.filter(id=id).update(name=name, description=description, start_date=startdate, due_date=duedate, user=user)
-
-        todo.save()
+        
         return Response(status=status.HTTP_200_OK)
 
 class deleteToDo(APIView):
