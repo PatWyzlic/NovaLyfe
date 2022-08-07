@@ -36,6 +36,9 @@ export default function WeatherPage({user}){
 
     return(
         <>  
+            <br/>
+            <br/>
+            <br/>
             <div>
                 <h6>Search for weather</h6>
                 <input type="text" onChange={e => setLocation(e.target.value)}></input>
