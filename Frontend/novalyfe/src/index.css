@@ -4,7 +4,7 @@ body {
   font-weight: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: black;
+  background-image: linear-gradient(rgb(27, 27, 27), rgb(29, 28, 28));
   color: white;
   font-size: larger;
 }

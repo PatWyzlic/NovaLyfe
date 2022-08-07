@@ -30,8 +30,56 @@ export default function ToDoPage({user}){
         
     }
 
-    return(
+    let [order, setOrder] = useState(true)
+
+    function newest(){
+        setOrder(false)
+    }
+
+    function oldest(){
+        setOrder(true)
+    }
+
+    if(order == true){
+        return(
         <>
+            <button onClick={newest}>Oldest</button>
+            <button><a href="/todos/create/">Add To Do</a></button>
+            {console.log(todos)}
+            <table className="add-border">
+                <thead>
+                    <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Start</th>
+                    <th scope="col">Due</th>
+                    </tr>
+                    
+                </thead>
+            <tbody>
+            
+            {[...todos].reverse().map((todo, index) => {
+                return <tr key={todo.id} todo={todo.id} >  
+                            {console.log(todo)}
+                            <td scope="col">{todo.name} </td>
+                            <td scope="col">{todo.description} </td>
+                            <td scope="col">{todo.start_date} </td>
+                            <td scope="col">{todo.due_date} </td>
+                            <button><a href={`todos/${todo.id}`}>View</a></button>
+                            <button><a href={`todos/delete/${todo.id}`}>Delete</a></button>
+                            {console.log(todo)}
+                            {console.log(user)}
+                        </tr>
+                    }
+            )
+            }
+            </tbody>
+            </table>
+        </>
+    )}else{
+        return(
+        <>
+            <button onClick={oldest}>Newest</button>
             <button><a href="/todos/create/">Add To Do</a></button>
             {console.log(todos)}
             <table className="add-border">
@@ -44,6 +92,7 @@ export default function ToDoPage({user}){
                     </tr>
                 </thead>
             <tbody>
+            
             {todos.map((todo, index) => {
                 return <tr key={todo.id} todo={todo.id} >  
                             {console.log(todo)}
@@ -62,5 +111,5 @@ export default function ToDoPage({user}){
             </tbody>
             </table>
         </>
-    )
+    )}
 }
