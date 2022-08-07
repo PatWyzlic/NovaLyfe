@@ -7,9 +7,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import ToDoPage from "./views_ToDoPage";
-import ToDoCreate from "./views_ToDoCreatePage";
 import WeatherPage from "./views_WeatherPage";
-import RoutinePage from "./views_RoutinePage"
 
 const Home = () => {
   const { user } = useContext(AuthContext);
