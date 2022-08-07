@@ -1,26 +1,34 @@
 import { useState, useContext, useParams, useCallback } from "react";
+import { useNavigate } from "react-router";
 import AuthContext from "../context/AuthContext";
 
-export default function ToDoEditPage({ user, duedate, startdate, description, name}) {
+export default function ToDoEditPage({ user, duedate, startdate, description, name, id}) {
 
-    // async function editToDo(){
-    //     let response = await fetch(`http://127.0.0.1:8000/api/todos/edit/${id}`, {
-    //         method:'PUT',
-    //         headers:{
-    //             'Content-Type':'application/json',
-    //             'Accept': 'application/json',
-    //             'Authorization':'Bearer ' + String(authTokens.access)
-    //         }
-    //     })
-    //     let data = await response.json()
-        
-    //     if(response.status === 200){
-    //         response(data)
-    //     }else if(response.statusText === 'Unauthorized'){
-    //         logoutUser()
-    //     }
-            
-    // }
+    let {authTokens, logoutUser} = useContext(AuthContext)  
+    
+    let navigate = useNavigate()
+
+    const editFetch = async(name, description, startdate, duedate) => {
+        const response = await fetch(`http://127.0.0.1:8000/api/todos/edit/${id}/`, {
+            method:'PUT',
+            headers:{
+                'Content-Type':'application/json',
+                'Accept': 'application/json',
+                'Authorization':'Bearer ' + String(authTokens.access)
+            },
+            body: JSON.stringify({
+                name,
+                description,
+                startdate,
+                duedate
+            })
+        });
+          if (response.status === 201) {
+            return navigate("/")
+          } else {
+            return navigate("/")
+          }
+        }
 
     
     const [newName, setName] = useState(name)
@@ -33,7 +41,7 @@ export default function ToDoEditPage({ user, duedate, startdate, description, na
 
     const handleSubmit = async e => {
         e.preventDefault();
-        editToDo(newName, newDescription, newStartDate, newDueDate)
+        editFetch(newName, newDescription, newStartDate, newDueDate)
     };
 
     return (
@@ -50,7 +58,7 @@ export default function ToDoEditPage({ user, duedate, startdate, description, na
                 <input 
                 type="text" 
                 id="name" 
-                value={name}
+                placeholder={name}
                 onChange={e => setName(e.target.value)}
                 required/>
             </div>
